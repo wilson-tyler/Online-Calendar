@@ -1,0 +1,76 @@
+body {
+  background-color: #DEC77E;
+}
+
+h1 {
+  color: #89C5DE;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  font-size: 60px;
+  letter-spacing: .1em;
+  text-align: center;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-family: 'Jost', sans-serif;
+  font-size: 21px;
+  letter-spacing: .1em;
+  word-spacing: .2em;
+  text-align: center;
+  margin-top: -1.7em;
+  color: #ffffff;
+}
+
+#monthContainer {
+  width: 1150px;
+  height: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 25px solid #73DEC1;
+  background-color: #A0A9DE;
+  border-radius: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  grid-auto-rows: 4em;
+  row-gap: 100px;
+  text-align: center;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 27px;
+  color:#ffffff;
+  border: 1px solid #DE9D8A;
+  background-color: #DE9D8A;
+  border-radius: 30px;
+  box-shadow: 1px 1px 5px #674a41;
+  width: 200px;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 140px;
+  vertical-align: middle;
+  line-height: 70px;
+}
+.btn:active {
+  background: #674a416a;
+  -webkit-box-shadow: inset 0px 0px 5px #674a416a;
+     -moz-box-shadow: inset 0px 0px 5px #674a416a;
+          box-shadow: inset 0px 0px 5px #674a416a;
+   outline: none;
+}
+.btn:hover {
+  background-color: #bd8878;
+  color: rgb(222, 222, 222);
+  transition: 0.2s;
+}
