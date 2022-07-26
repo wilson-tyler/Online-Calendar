@@ -6,7 +6,7 @@ export default class Month extends Component{
   }
   render() {
     return(
-      <button className='btn'>{this.props.month}</button>
+      <button className='monthBtn' key={this.props.key}>{this.props.month}</button>
     )
   }
 }

@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-  color: #89C5DE;
+  color: #79afc6;
   font-family: 'Jost', sans-serif;
   font-weight: 100;
   font-size: 60px;
@@ -28,8 +28,8 @@ h2 {
 }
 
 #monthContainer {
-  width: 1150px;
-  height: 550px;
+  width: 1020px;
+  height: 530px;
   margin-left: auto;
   margin-right: auto;
   border: 25px solid #73DEC1;
@@ -43,7 +43,7 @@ h2 {
   align-items: center;
 }
 
-.btn {
+.monthBtn {
   cursor: pointer;
   font-family: 'Jost', sans-serif;
   font-weight: 100;
@@ -58,19 +58,84 @@ h2 {
   height: 120px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 140px;
+  margin-top: 130px;
   vertical-align: middle;
   line-height: 70px;
 }
-.btn:active {
+.monthBtn:active {
   background: #674a416a;
   -webkit-box-shadow: inset 0px 0px 5px #674a416a;
      -moz-box-shadow: inset 0px 0px 5px #674a416a;
           box-shadow: inset 0px 0px 5px #674a416a;
    outline: none;
 }
-.btn:hover {
+.monthBtn:hover {
   background-color: #bd8878;
   color: rgb(222, 222, 222);
   transition: 0.2s;
 }
+
+.todoToday {
+  display: inline-block;
+}
+
+
+
+
+
+// .wrap {
+//   position: absolute
+//   overflow: hidden
+//   top: 10%
+//   right: 10%
+//   bottom: 85px
+//   left: 10%
+//   padding: 20px 50px
+//   display: block
+//   border-radius: 4px
+//   transform: translateY(20px)
+//   transition: all 0.5s
+//   visibility: hidden
+// }
+//   .content
+//     opacity: 0
+  
+//   &:before
+//     position: absolute
+//     width: 1px
+//     height: 1px
+//     background: white
+//     content: ''
+//     bottom: 10px
+//     left: 50%
+//     top: 95%
+//     color: #fff
+//     border-radius: 50%
+//     -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1)
+//     transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1)
+  
+//   &.active
+//     display: block
+//     visibility: visible
+//     box-shadow: 2px 3px 16px darken($background, 15%) 
+//     transition: all 600ms
+//     transform: translateY(0px)
+//     transition: all 0.5s
+      
+//     &:before
+//       height: 2000px
+//       width: 2000px
+//       border-radius: 50%
+//       top: 50%
+//       left: 50%
+//       margin-left: -1000px
+//       margin-top: -1000px
+//       display: block
+//       -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1)
+//       transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1)
+  
+//     .content
+//       position: relative
+//       z-index: 1
+//       opacity: 1
+//       transition: all 600ms cubic-bezier(0.55, 0.055, 0.675, 0.19)
