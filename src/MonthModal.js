@@ -49,10 +49,9 @@ const monthSchema = new mongoose.Schema({
 const Month = mongoose.model('Month', monthSchema);
 
 const eventSchema = new mongoose.Schema({
-  key: Number,
   event: String,
   time: String
 })
 const Event = mongoose.model('Event', eventSchema);
 
-module.exports = Month, Event, MONGO_URI;
+module.exports = {Month, Event, MONGO_URI};

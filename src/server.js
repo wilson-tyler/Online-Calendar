@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const path = require("path");
+// const monthController = require('./controllers/monthController');
 
 // REQUIRE ROUTERS
 const monthRouter = require("./routers.js/monthRouter");
+const eventRouter = require("./routers.js/eventRouter");
 
 // PARSING
 app.use(express.json())
+app.use(express.urlencoded())
 
 
 // GIVE USER DIST BUNDLED FILES
@@ -15,6 +18,8 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 // ENDPOINT PATHS
 app.use('/month', monthRouter);
+
+app.use('/event', eventRouter);
 
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
