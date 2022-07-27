@@ -16,11 +16,34 @@ monthController.getMonth = async (req, res, next) => {
   }
 }
 
+monthController.getEvent = async (req, res, next) => {
+  try {
+    const { day, month } = req.params;
+    const todayEvents = await model.Month.findOne({month: month});
+    console.log(todayEvents)
+    const eventArr = todayEvents[day];
+    console.log(eventArr)
+    const events = [];
+    for (let i = 0; i < eventArr.length; i++) {
+      events.push(await model.Event.findOne({_id: eventArr[i]}));
+    }
+    console.log(events)
+    res.locals.selectedEvents = events;
+    next();
+  } catch (err) {
+    return next({
+      log: 'Caught in getEvent controller.',
+      message: {err: 'Caught in getEvent controller.'}
+    });
+  }
+}
+
 monthController.getTodayEvents = async (req, res, next) => {
   try {
     const { day, month } = req.body;
     const todayEvents = await model.Month.find({month: month});
-    res.locals.todayEvents = todayEvents[day];
+    const eventArr = todayEvents[day];
+    res.locals.todayEvents = eventArr;
     next();
   } catch (err) {
     return next({

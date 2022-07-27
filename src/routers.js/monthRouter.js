@@ -8,6 +8,10 @@ router.get('/:month', monthController.getMonth, (req, res) => {
   return res.status(200).json(res.locals.month);
 })
 
+router.get('/:month/:day', monthController.getEvent, (req, res) => {
+  return res.status(200).json(res.locals.selectedEvents);
+})
+
 router.post('/:month/:day', dayController.postEvent, (req, res) => {
   return res.status(200).json(res.locals.event);
 })

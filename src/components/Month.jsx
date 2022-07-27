@@ -5,8 +5,11 @@ export default class Month extends Component{
     super(props);
   }
   render() {
+
     return(
-      <button className='monthBtn' key={this.props.key}>{this.props.month}</button>
+         <button className='monthBtn' key={this.props.key} onClick={() => this.props.loadMonth(this.props.month)}>
+           {this.props.month}
+         </button>
     )
   }
 }

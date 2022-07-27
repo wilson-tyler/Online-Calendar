@@ -79,6 +79,24 @@ h2 {
   display: inline-block;
 }
 
+.monthCard {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 27px;
+  color:#ffffff;
+  width: 900px;
+  height: 480px;
+  border: 10px solid #bd8878;
+  border-radius: 30px;
+  margin-top: 465px;
+  margin-left: 20%;
+  margin-right: auto;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(128.5px, 1fr));
+}
 
 
 
