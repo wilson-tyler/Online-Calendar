@@ -1,9 +1,10 @@
 body {
-  background-color: #DEC77E;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/002/547/521/non_2x/minimalist-abstract-background-with-outline-plant-flower-and-leaves-vector.jpg');
+  background-size: auto;
 }
 
 h1 {
-  color: #79afc6;
+  color: #323239;
   font-family: 'Jost', sans-serif;
   font-weight: 100;
   font-size: 60px;
@@ -24,7 +25,7 @@ h2 {
   word-spacing: .2em;
   text-align: center;
   margin-top: -1.7em;
-  color: #ffffff;
+  color: #9E657E;
 }
 
 #monthContainer {
@@ -32,8 +33,8 @@ h2 {
   height: 530px;
   margin-left: auto;
   margin-right: auto;
-  border: 25px solid #73DEC1;
-  background-color: #A0A9DE;
+  border: 25px solid #9e6e46;
+  background-color: #b27d51;
   border-radius: 100px;
   display: grid;
   grid-template-columns: repeat(4, minmax(250px, 1fr));
@@ -49,11 +50,11 @@ h2 {
   font-weight: 100;
   letter-spacing: .1em;
   font-size: 27px;
-  color:#ffffff;
-  border: 1px solid #DE9D8A;
-  background-color: #DE9D8A;
+  color:#dbdbdb;
+  border: 1px solid #323239;
+  background-color: #323239;
   border-radius: 30px;
-  box-shadow: 1px 1px 5px #674a41;
+  box-shadow: 2px 2px 5px #161619;
   width: 200px;
   height: 120px;
   margin-left: auto;
@@ -63,15 +64,46 @@ h2 {
   line-height: 70px;
 }
 .monthBtn:active {
-  background: #674a416a;
-  -webkit-box-shadow: inset 0px 0px 5px #674a416a;
-     -moz-box-shadow: inset 0px 0px 5px #674a416a;
-          box-shadow: inset 0px 0px 5px #674a416a;
+  background: #815266;
+  -webkit-box-shadow: inset 0px 0px 5px #815266;
+     -moz-box-shadow: inset 0px 0px 5px #815266;
+          box-shadow: inset 0px 0px 5px #815266;
    outline: none;
 }
 .monthBtn:hover {
-  background-color: #bd8878;
-  color: rgb(222, 222, 222);
+  background-color: #9E657E;
+  border-color: #9E657E;
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
+}
+
+#backMonth {
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 17px;
+  color:#f0f0f0;
+  border: 1px solid #815266;
+  background-color: #815266;
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px #161619;
+  height: 60px;
+  width: 115px;
+  margin-left: 10px;
+  margin-top: -35px;
+}
+#backMonth:active {
+  background: #815266;
+  -webkit-box-shadow: inset 0px 0px 5px #815266;
+     -moz-box-shadow: inset 0px 0px 5px #815266;
+          box-shadow: inset 0px 0px 5px #815266;
+   outline: none;
+}
+#backMonth:hover {
+  background-color: #EB8AB5;
+  border-color: #EB8AB5;
+  color: rgb(255, 255, 255);
   transition: 0.2s;
 }
 
@@ -83,24 +115,189 @@ h2 {
   font-family: 'Jost', sans-serif;
   font-weight: 100;
   letter-spacing: .1em;
-  font-size: 27px;
-  color:#ffffff;
-  width: 900px;
+  font-size: 25px;
+  color:#323239;
+  width: 910px;
   height: 480px;
-  border: 10px solid #bd8878;
+  border: 7px solid #d3d3d3;
+  background-color: #ededed;
   border-radius: 30px;
   margin-top: 465px;
-  margin-left: 20%;
+  margin-left: 19%;
   margin-right: auto;
   text-align: center;
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(7, minmax(128.5px, 1fr));
+  grid-template-rows: repeat(8, 43px);
+  grid-template-columns: repeat(7, 128.5px);
+  row-gap: 29px;
 }
 
+.dateButton {
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 20px;
+  color:#dbdbdb;
+  background-color: #323239;
+  height: 60px;
+  width: 115px;
+  border: solid #323239;
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-top: -35px;
+  text-align: start;
+}
+.dateButton:hover {
+  background-color: #9E657E;
+  border-color: #9E657E;
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
+}
+.dateButton:active {
+  background: #815266;
+  -webkit-box-shadow: inset 0px 0px 5px #815266;
+     -moz-box-shadow: inset 0px 0px 5px #815266;
+          box-shadow: inset 0px 0px 5px #815266;
+   outline: none;
+}
 
+.eventsPage {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 25px;
+  color:#323239;
+  width: 400px;
+  height: 480px;
+  border: 7px solid #d3d3d3;
+  background-color: #ededed;
+  border-radius: 30px;
+  margin-top: 465px;
+  margin-left: 18%;
+  margin-right: auto;
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(6, 50px);
+  // grid-template-columns: repeat(1, 450px);
+  row-gap: 35px;
+}
 
+.eventTimes {
+  text-align: left;
+  font-size: 16px;
+  margin-left: 12px;
+  margin-bottom: 100px;
+  margin-top: 50px;
+  height: 70px;
+  width: 370px;
+  color: #dbdbdb;
+  border: 1px solid #323239;
+  background-color: #323239;
+  border-radius: 10px;
+  padding: 1px;
+  padding-left: 5px;
+}
 
+.hasEvent {
+  background-color: #9E657E;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 20px;
+  color:#ededed;
+  height: 60px;
+  width: 115px;
+  border: solid #9E657E;
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-top: -35px;
+  text-align: start;
+}
+.hasEvent:hover {
+  background-color: #EB8AB5;
+  border-color: #EB8AB5;
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
+}
+.hasEvent:active {
+  background: #815266;
+  -webkit-box-shadow: inset 0px 0px 5px #815266;
+     -moz-box-shadow: inset 0px 0px 5px #815266;
+          box-shadow: inset 0px 0px 5px #815266;
+   outline: none;
+}
+
+#createEvent {
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 25px;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 435px;
+  margin-bottom: 310px;
+  height: 70px;
+  width: 250px;
+  color: #323239;
+  border: 1px solid #B3DBD8;
+  background-color: #B3DBD8;
+  border-radius: 10px;
+  padding: 1px;
+  padding-left: 5px;
+ position: fixed; 
+}
+#createEvent:hover {
+  background-color: #c3eae8;
+  border-color: #c3eae8;
+  color:#494954;
+  transition: 0.2s;
+}
+#createEvent:active {
+  background: #B3DBD8;
+  -webkit-box-shadow: inset 0px 0px 5px #B3DBD8;
+     -moz-box-shadow: inset 0px 0px 5px #B3DBD8;
+          box-shadow: inset 0px 0px 5px #B3DBD8;
+   outline: none;
+}
+
+#deleteEvent {
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  letter-spacing: .1em;
+  font-size: 25px;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 435px;
+  margin-bottom: 120px;
+  height: 70px;
+  width: 250px;
+  color: #323239;
+  border: 1px solid #e3b8b8;
+  background-color: #e3b8b8;
+  border-radius: 10px;
+  padding: 1px;
+  padding-left: 5px;
+ position: fixed; 
+}
+#deleteEvent:hover {
+  background-color: #eec1c1;
+  border-color: #eec1c1;
+  color:#494954;
+  transition: 0.2s;
+}
+#deleteEvent:active {
+  background: #e3b8b8;
+  -webkit-box-shadow: inset 0px 0px 5px #e3b8b8;
+     -moz-box-shadow: inset 0px 0px 5px #e3b8b8;
+          box-shadow: inset 0px 0px 5px #e3b8b8;
+   outline: none;
+}
 // .wrap {
 //   position: absolute
 //   overflow: hidden

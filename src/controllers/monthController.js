@@ -20,14 +20,11 @@ monthController.getEvent = async (req, res, next) => {
   try {
     const { day, month } = req.params;
     const todayEvents = await model.Month.findOne({month: month});
-    console.log(todayEvents)
     const eventArr = todayEvents[day];
-    console.log(eventArr)
     const events = [];
     for (let i = 0; i < eventArr.length; i++) {
       events.push(await model.Event.findOne({_id: eventArr[i]}));
     }
-    console.log(events)
     res.locals.selectedEvents = events;
     next();
   } catch (err) {
