@@ -4,6 +4,7 @@ import MonthPage from '../components/MonthPage.jsx'
 import Events from '../components/EventPage.jsx';
 import EventCreate from '../components/EventCreate.jsx';
 import EventDelete from '../components/EventDelete.jsx';
+import EventUpdate from '../components/EventUpdate.jsx';
 
 export default class MonthContainer extends Component {
   constructor(props) {
@@ -38,8 +39,10 @@ export default class MonthContainer extends Component {
       current: null,
       currentDay: null,
       currentEvent: null,
+      currentEventId: null,
       createEvent: false,
       deleteEvent: false,
+      updateEvent: false,
       date: null
     };
     this.loadMonth = this.loadMonth.bind(this);
@@ -47,8 +50,10 @@ export default class MonthContainer extends Component {
     this.fetchEvents = this.fetchEvents.bind(this);
     this.eventCreator = this.eventCreator.bind(this);
     this.eventDeletor = this.eventDeletor.bind(this);
+    this.eventUpdater = this.eventUpdater.bind(this);
     this.postEvent = this.postEvent.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.updateEvent = this.updateEvent.bind(this);
   }
 
   fetchMonth(month, monthId) {
@@ -56,16 +61,16 @@ export default class MonthContainer extends Component {
     fetch(`http://localhost:5050/month/${month}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         this.setState({ ...this.state, [monthId]: data, eventsClicked: false});
     })
   }
 
   fetchEvents(month, id) {
+    console.log(month)
     fetch(`http://localhost:5050/month/${month}/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ ...this.state, eventsClicked: true, currentDay: data, date: id, deleteEvent: false});
+        this.setState({ ...this.state, clicked: true, current: month, eventsClicked: true, currentDay: data, date: id, createEvent: false, deleteEvent: false, updateEvent: false});
     })
   }
 
@@ -87,21 +92,28 @@ export default class MonthContainer extends Component {
     }
   }
 
-  eventDeletor(event) {
+  eventDeletor(event, eventid) {
     if (this.state.deleteEvent === false) {
       console.log('DELETE')
-      console.log(event[0])
-      this.setState({ ...this.state, deleteEvent: true, currentEvent: event[0] })
+      console.log(event)
+      console.log('ID: ', eventid)
+      this.setState({ ...this.state, deleteEvent: true, currentEvent: event, currentEventId: eventid})
     } else {
-      this.setState({ ...this.state, deleteEvent: false, currentEvent: null })
+      this.setState({ ...this.state, deleteEvent: false, currentEvent: null, currentEventId: null})
+    }
+  }
+
+  eventUpdater(event) {
+    if (this.state.updateEvent === false) {
+      console.log('UPDATE')
+      console.log(event)
+      this.setState({ ...this.state, updateEvent: true, currentEvent: event })
+    } else {
+      this.setState({ ...this.state, updateEvent: false, currentEvent: null })
     }
   }
 
   postEvent(event, time, month, day) {
-    console.log('event: ', event)
-    console.log('time: ', time)
-    console.log('month: ', month)
-    console.log('date: ', day)
     fetch(`http://localhost:5050/month/${month}/${day}`, {
       method: 'POST',
       headers: {
@@ -118,7 +130,7 @@ export default class MonthContainer extends Component {
   }
 
   deleteEvent(eventToDelete) {
-    console.log(eventToDelete)
+    console.log('event to delete: ', eventToDelete)
     console.log(this.state.current)
     console.log(this.state.date)
     fetch(`http://localhost:5050/month/${this.state.current}/${this.state.date}`, {
@@ -128,7 +140,6 @@ export default class MonthContainer extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       let newEvents = this.state.currentDay
       for (let i = 0; i < newEvents.length; i++) {
         if(newEvents[i].event === eventToDelete) {
@@ -141,16 +152,60 @@ export default class MonthContainer extends Component {
     })
   }
 
+  updateEvent(newDescription, newTime) {
+    console.log('IN UPDATE')
+    console.log('Description: ', newDescription)
+    console.log('Time: ', newTime)
+    console.log('id: ', this.state.currentEventId)
+    fetch(`http://localhost:5050/month/${this.state.current}/${this.state.date}`, {
+      method: 'PATCH',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({event: newDescription, time: newTime, _id: this.state.currentEventId})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('DATA BACK: ', data)
+      let newEvents = this.state.currentDay
+      console.log('events: ', newEvents)
+      for (let i = 0; i < newEvents.length; i++) {
+        if(newEvents[i].event == this.state.currentEvent) {
+          newEvents[i].event = newDescription
+          newEvents[i].time = newTime
+          break;
+        }
+      }
+      this.setState({...this.state, deleteEvent: false, updateEvent: false, currentDay: newEvents, currentEvent: null})
+    })
+  }
+
   render() {
+    let month = (new Date().getMonth()) + 1;
+    let currMonth;
+    let tempState = {...this.state};
+    for (const key of Object.keys(tempState)) {
+      console.log('key ', key)
+      console.log('month ', month)
+      if (key == month) {
+        console.log('number: ', tempState[key])
+        currMonth = tempState[key];
+        console.log(currMonth)
+        break;
+      }
+    }
+
+
     const months = [];
     let monthPage;
     let currentEvents;
     let eventCreation;
     let eventDeletion;
-    if (this.state.deleteEvent === true) {
-      eventDeletion = <EventDelete deleteEvent={this.deleteEvent} fetchEvents={this.fetchEvents} currentMonth={this.state.current} date={this.state.date} currentEvent={this.state.currentEvent}/>
+    let eventUpdating;
+    if (this.state.updateEvent === true) {
+      eventUpdating = <EventUpdate updateEvent={this.updateEvent} fetchEvents={this.fetchEvents} currentMonth={this.state.current} date={this.state.date} currentEvent={this.state.currentEvent}/>
+    } else if (this.state.deleteEvent === true) {
+      eventDeletion = <EventDelete deleteEvent={this.deleteEvent} fetchEvents={this.fetchEvents} eventUpdater={this.eventUpdater} currentMonth={this.state.current} date={this.state.date} currentEvent={this.state.currentEvent}/>
     } else if (this.state.createEvent === true) {
-      eventCreation = <EventCreate postEvent={this.postEvent} currentMonth={this.state.current} date={this.state.date}/>
+      eventCreation = <EventCreate postEvent={this.postEvent} fetchEvents={this.fetchEvents} currentMonth={this.state.current} date={this.state.date}/>
     } else if (this.state.eventsClicked === true) {
       currentEvents = <Events eventData={this.state.currentDay} eventCreator={this.eventCreator} eventDeletor={this.eventDeletor} loadMonth={this.fetchMonth} date={this.state.date} currentMonth={this.state.current} currentDay={this.state.currentDay}/>
     } else if (this.state.clicked === false) {
@@ -167,12 +222,17 @@ export default class MonthContainer extends Component {
       }
     }
     return (
-      <div id="monthContainer">
-        {months}
-        {this.state.clicked && <div>{monthPage}</div>}
-        {this.state.eventsClicked && <div>{currentEvents}</div>}
-        {this.state.createEvent && <div>{eventCreation}</div>}
-        {this.state.deleteEvent && <div>{eventDeletion}</div>}
+      <div>
+        <button className="todaysEvents" onClick={() => {this.fetchEvents(currMonth, new Date().getDate())}}>Today's events</button>
+        <div id="monthContainer">
+          {months}
+          {this.state.clicked && <div id="monthName">{this.state.current}</div>}
+          {this.state.clicked && <div>{monthPage}</div>}
+          {this.state.eventsClicked && <div>{currentEvents}</div>}
+          {this.state.createEvent && <div>{eventCreation}</div>}
+          {this.state.deleteEvent && <div>{eventDeletion}</div>}
+          {this.state.updateEvent && <div>{eventUpdating}</div>}
+        </div>
       </div>
     )
   }

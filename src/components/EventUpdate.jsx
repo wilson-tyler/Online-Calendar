@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
-export default class EventCreate extends Component {
+export default class EventUpdate extends Component{
   constructor(props) {
     super(props);
   }
   render() {
+    console.log('HERE HERE: ', this.props.currentEvent)
+    return(
+        <div className='updateEventPage'>
+         <div id='updateTitle'>Update<hr/>"{this.props.currentEvent}"</div>
 
-    return (
-      <div className='updatePage'>
-        Create a new Event for
-        <div id="currDay">{this.props.currentMonth} {this.props.date}</div>
-        <input id="eventDescription" placeholder='Describe event...'></input>
+         <input id="eventDescriptionUpdate" placeholder='Describe event...'></input>
         <label></label>
 
-        <select name="times" id="times">
+        <select name="timesUpdate" id="timesUpdate">
           <option value="1">12:00AM</option>
           <option value="2">1:00AM</option>
           <option value="3">2:00AM</option>
@@ -39,9 +39,10 @@ export default class EventCreate extends Component {
           <option value="23">10:00PM</option>
           <option value="24">11:00PM</option>
         </select>
-        <button id="postEventBtn" onClick={() => {this.props.postEvent(document.getElementById('eventDescription').value, document.getElementById('times').options[document.getElementById('times').selectedIndex].text, this.props.currentMonth, this.props.date)}}>Post event</button>
-        <button id='cancelEvent' onClick={() => {this.props.fetchEvents(this.props.currentMonth, this.props.date)}}>Discard event</button>
-      </div>
+
+          <button id="updateEventFinal" onClick={() => {this.props.updateEvent(document.getElementById('eventDescriptionUpdate').value, document.getElementById('timesUpdate').options[document.getElementById('timesUpdate').selectedIndex].text)}}>Update event</button>
+          <button id='cancelEvent' onClick={this.props.eventCreator}>Discard changes</button>
+         </div>
     )
   }
 }
