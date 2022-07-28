@@ -7,9 +7,11 @@ export default class EventDelete extends Component{
   render() {
 
     return(
-         <button className='monthBtn' key={this.props.key} onClick={() => this.props.loadMonth(this.props.month)}>
-           {this.props.month}
-         </button>
+        <div className='updatePage'>
+          <button id="updateEvent" onClick={this.props.updateEvent}>Update event</button>
+          <button id="deleteEvent" onClick={() => {this.props.deleteEvent(this.props.currentEvent)}}>Delete event</button>
+          <button id="backToEvent" onClick={() => {this.props.fetchEvents(this.props.currentMonth, this.props.date)}}>Back to events</button>
+         </div>
     )
   }
 }

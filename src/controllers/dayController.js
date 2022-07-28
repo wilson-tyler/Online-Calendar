@@ -21,20 +21,24 @@ dayController.postEvent = async (req, res, next) => {
 
 dayController.deleteEvent = async (req, res, next) => {
   try {
+    console.log('hello')
     const { day, month } = req.params;
-    const { _id } = req.body;
-    const deletedEvent = await model.Event.deleteOne({_id: _id})
+    const { event } = req.body;
+    const deletedEvent = await model.Event.findOneAndDelete({event: event})
+    console.log('deleted event: ', deletedEvent)
     const monthDelete = await model.Month.findOne({ month: month })
+    console.log('month ', monthDelete)
     const updatedArr = monthDelete[day];
     console.log(updatedArr)
+    console.log('deleted Event ID: ', deletedEvent._id)
     for (let i = 0; i < updatedArr.length; i++) {
-      if(updatedArr[i] == _id) {
+      if(updatedArr[i] == String(deletedEvent._id)) {
         updatedArr.splice(i, 1);
       }
     }
-    console.log(updatedArr)
+    console.log('updated: ', updatedArr)
     const finalDelete = await model.Month.updateOne({month: month}, { $set: {[day]: updatedArr}}, {new: true})
-
+    console.log('final', finalDelete)
     res.locals.event = finalDelete;
     next();
   } catch (err) {

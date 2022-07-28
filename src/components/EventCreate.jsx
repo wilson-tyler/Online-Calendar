@@ -7,7 +7,9 @@ export default class EventCreate extends Component {
   render() {
 
     return (
-      <div>
+      <div className='updatePage'>
+        Create a new Event for
+        <div id="currDay">{this.props.currentMonth} {this.props.date}</div>
         <input id="eventDescription" placeholder='Describe event...'></input>
         <label></label>
 
@@ -37,7 +39,8 @@ export default class EventCreate extends Component {
           <option value="23">10:00PM</option>
           <option value="24">11:00PM</option>
         </select>
-        <button onClick={() => {this.props.postEvent(document.getElementById('eventDescription').value, document.getElementById('times').options[document.getElementById('times').selectedIndex].text, this.props.currentMonth, this.props.date)}}>Post event</button>
+        <button id="postEventBtn" onClick={() => {this.props.postEvent(document.getElementById('eventDescription').value, document.getElementById('times').options[document.getElementById('times').selectedIndex].text, this.props.currentMonth, this.props.date)}}>Post event</button>
+        <button id='cancelEvent' onClick={this.props.eventCreator}>Discard event</button>
       </div>
     )
   }
