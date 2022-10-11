@@ -1,2 +1,2 @@
 # Online-Calendar
-Online calendar for solo project at Codesmith
+Online calendar for solo project
